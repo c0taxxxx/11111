@@ -4,212 +4,634 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Презентации | ЭУМК</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        .presentation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .presentation-card {
-            padding: 30px;
-            min-height: 220px;
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        nav.scrolled {
+            padding: 0.7rem 2rem;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            color: #007bff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-right: auto;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            animation: pulse 1s ease infinite;
+        }
+
+        .logo a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .nav-links > div {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            padding: 0.5rem 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+            transform: translateY(-2px);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.95);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-width: 200px;
+            z-index: 100;
+        }
+
+        .nav-links > div:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(10px) scale(1);
+        }
+
+        .dropdown a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .dropdown a:hover {
+            color: #007bff;
+            padding-left: 5px;
+        }
+
+        .dropdown h3 {
+            color: #007bff;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .main-content {
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .presentations-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .presentations-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            transform: perspective(1000px) rotateX(10deg);
+        }
+        
+        .presentations-header h1 {
+            color: #007bff;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 123, 255, 0.1);
+            background: linear-gradient(to right, #007bff, #00aaff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .presentations-header p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .presentation-list {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .presentation-item {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
-        
-        .presentation-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+        .presentation-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #007bff, #00aaff);
+            transition: width 0.3s ease;
         }
         
-        .presentation-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #d2463a; /* Цвет иконки PowerPoint */
+        .presentation-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-        
-        .presentation-card h3 {
-            font-size: 1.3rem;
-            line-height: 1.4;
-            margin-bottom: 25px;
-            flex-grow: 1;
-            color: #1d1d1f;
+
+        .presentation-item:hover::before {
+            width: 5px;
         }
-        
-        .btn-download {
-            align-self: flex-start;
-            padding: 12px 25px;
-            font-size: 1rem;
-            background-color: #0071e3;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: background-color 0.2s ease;
-        }
-        
-        .btn-download:hover {
-            background-color: #0062c4;
-        }
-        
-        .category-filter {
+
+        .presentation-item a {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
-        
-        .filter-btn {
-            padding: 8px 16px;
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.05);
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
+
+        .presentation-item a:hover {
+            color: #007bff;
         }
-        
-        .filter-btn:hover, .filter-btn.active {
-            background: #0071e3;
-            color: white;
+
+        .presentation-icon {
+            margin-right: 1rem;
+            color: #007bff;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
         }
-        
-        .search-bar {
-            margin-bottom: 20px;
-            max-width: 400px;
+
+        .presentation-item:hover .presentation-icon {
+            animation: float 2s ease infinite;
+            color: #00aaff;
         }
-        
-        .search-bar input {
-            width: 100%;
-            padding: 12px 16px;
+
+        .presentation-title {
+            font-weight: 500;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+        }
+
+        .coming-soon {
+            color: #999;
+            font-style: italic;
+        }
+
+        .wave-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(0, 123, 255, 0.2);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .wave-effect:hover::after {
+            animation: wave 0.6s ease-out;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        @keyframes cardLoading {
+            0% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .loading-card {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: cardLoading 1.5s ease infinite;
+            color: transparent !important;
             border-radius: 8px;
-            border: 1px solid #d2d2d7;
-            font-size: 16px;
         }
-        
-        .no-presentations {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px;
-            color: #86868b;
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 123, 255, 0.3);
+            z-index: 999;
         }
-        
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #0069d9;
+            transform: translateY(-5px) scale(1.1);
+        }
+
         @media (max-width: 768px) {
-            .presentation-grid {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .presentation-list {
                 grid-template-columns: 1fr;
             }
             
-            .presentation-card {
-                min-height: auto;
+            .presentations-header h1 {
+                font-size: 2rem;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <nav class="glass-nav">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="../index.html" class="logo-link">
-                    <span class="logo-icon"></span>
-                    <span>ЭУМК</span>
-                </a>
-            </div>
-            <div class="nav-links">
-                <div class="nav-item">
-                    <a class="nav-link">Теоретический раздел</a>
-                    <div class="glass-dropdown">
-                        <h3>Теоретический раздел</h3>
-                        <a href="presentations.html">Презентации</a>
-                        <a href="audio.html">Аудиоматериалы</a>
-                        <a href="slovary.html">Англо-русский словарь</a>
-                        <a href="grammar.html">Грамматический материал</a>
-                        <a href="translate.html">Особенности технического перевода</a>
-                        <a href="phrases.html">Полезные фразы для обсуждения</a>
-                        <a href="table.html">Таблица неправильных глаголов</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link">Практический раздел</a>
-                    <div class="dropdown glass-dropdown">
-                        <h3>Практический раздел</h3>
-                        <a href="../theme/practice.html">Практические занятия</a>
-                        <a href="../theme/practicetests.html">Интерактивные упражнения</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link">Раздел контроля знаний</a>
-                    <div class="dropdown glass-dropdown">
-                        <h3>Раздел контроля знаний</h3>
-                        <a href="../control/s.html">Обязательная контрольная работа</a>
-                        <a href="../control/control.html">Тематический контроль</a>
-                        <a href="../control/dkr.html">ДКР</a>
-                        <a href="../control/control.html">Критерии оценки</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link">Вспомогательный раздел</a>
-                        <div class="dropdown glass-dropdown">
-                        <h3>Учебная программа</h3>
-                        <a href="../additional/program.html">Учебный план</a>
-                        <a href="../additional/program.html">Учебная программа</a>
-                        <a href="../additional/ptp.html">ПТП</a>
-                        <a href="../additional/ktp.html">КТП</a>
-                        <a href="../additional/resources.html">Перечень учебных изданий</a>
-                    </div>
+    <nav id="navbar">
+        <div class="logo">
+            <a href="../index.html">ЭУМК</a>
+        </div>
+        <div class="nav-links">
+            <div>
+                <a href="../theory/theory.html" class="nav-link">Теоретический</a>
+                <div class="dropdown">
+                    <h3>Теоретический раздел</h3>
+                    <a href="presentations.html">Презентации</a>
+                    <a href="audio.html">Аудио-материал</a>
+                    <a href="../">Дополнительные ресурсы</a>
                 </div>
             </div>
-            <button class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div>
+                <a href="../theme/practice.html" class="nav-link">Практический</a>
+                <div class="dropdown">
+                    <h3>Практический раздел</h3>
+                    <a href="../theme/practice.html">Темы</a>
+                </div>
+            </div>
+            <div>
+                <a href="#control" class="nav-link">Контроль знаний</a>
+                <div class="dropdown">
+                    <h3>Проверка знаний</h3>
+                    <a href="#tests">Тесты</a>
+                    <a href="#quizzes">Викторины</a>
+                    <a href="#exams">Экзаменационные задания</a>
+                </div>
+            </div>
+            <div>
+                <a href="#help" class="nav-link">Вспомогательный</a>
+                <div class="dropdown">
+                    <h3>Дополнительные материалы</h3>
+                    <a href="#dictionary">Словарь</a>
+                    <a href="#resources">Ресурсы</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+            </div>
         </div>
     </nav>
-
-
-    <main class="main-content">
-        <section class="section">
-            <div class="section-header">
-                <h1>Презентации</h1>
-                <p>Учебные материалы в формате презентаций PowerPoint для наглядного изучения тем</p>
-            </div>
-            
-            <!-- Фильтры и поиск -->
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Поиск по названию...">
-            </div>
-            
-            <div class="category-filter" id="categoryFilter">
-                <button class="filter-btn active" data-category="all">Все</button>
-                <button class="filter-btn" data-category="marketing">Маркетинг</button>
-                <button class="filter-btn" data-category="sales">Продажи</button>
-                <button class="filter-btn" data-category="product">Продукт</button>
-                <button class="filter-btn" data-category="training">Обучение</button>
-            </div>
-            
-            <!-- Контейнер для презентаций -->
-            <div class="presentation-grid" id="presentationContainer">
-                <!-- Презентации будут загружаться здесь через JavaScript -->
-            </div>
-        </section>
-    </main>
+    <div class="main-content">
+        <div class="presentations-header">
+            <h1>Презентации</h1>
+            <p>Учебные материалы в формате презентаций PowerPoint для наглядного изучения тем</p>
+        </div>
+        
+        <div class="presentations-container">
+            <ul class="presentation-list">
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/1.1. Лексико-фонетический и орфографический материал.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">1.1. Лексико-фонетический и орфографический материал</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="#">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title coming-soon">1.2. Лексико-грамматический материал (скоро)</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.1. Компетенции специалиста. Моя профессия.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.1. Компетенции специалиста. Моя профессия</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.2. Профессиональное самоопределение личности. Резюме.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.2. Профессиональное самоопределение личности. Резюме</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="#">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title coming-soon">2.3.1. Традиционные строительные материалы (скоро)</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.3.2. Современные строительные материалы.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.3.2. Современные строительные материалы</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.3.3. Металлическое стекло.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.3.3. Металлическое стекло</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.3.4. Инновации в области материаловедения и строительства.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.3.4. Инновации в области материаловедения и строительства</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="#">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title coming-soon">2.3.5. Материалы для внутренней отделки стен (скоро)</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.3.6. Панели гипсокартона.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.3.6. Панели гипсокартона</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.3.7. Напольные покрытия.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.3.7. Напольные покрытия</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.3.8. Ламинат.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.3.8. Ламинат</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.3.9. Строительная техника.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.3.9. Строительная техника</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.3.10. Строительные краны.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.3.10. Строительные краны</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.4.1. Этапы и планирование строительного процесса.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.4.1. Этапы и планирование строительного процесса</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.4.2. Строительная площадка. Требования безопасности.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.4.2. Строительная площадка. Требования безопасности</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.4.3. Инженерные системы зданий.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.4.3. Инженерные системы зданий</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.4.4. Нанотехнологии в строительстве.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.4.4. Нанотехнологии в строительстве</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.4.5. Умные дома.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.4.5. Умные дома</div>
+                    </a>
+                </li>
+                <li class="presentation-item wave-effect">
+                    <a href="presentations/2.5.1. Экологичность и жилищное строительство. Обобщение изученного материала.pptx">
+                        <div class="presentation-icon">
+                            <i class="far fa-file-powerpoint"></i>
+                        </div>
+                        <div class="presentation-title">2.5.1. Экологичность и жилищное строительство. Обобщение изученного материала</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <div class="scroll-top" id="scrollTop">
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <script src="../script.js"></script>
-    <script type="module" src="updateNav.js"></script>
-    <script src="../presentations-admin.js"></script>
+    <script>
+        // Анимация навигации при скролле
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Кнопка "Наверх"
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('active');
+            } else {
+                scrollTop.classList.remove('active');
+            }
+        });
+
+        // Плавный скролл
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Кнопка "Наверх"
+        document.getElementById('scrollTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Анимация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 200);
+        });
+    </script>
 </body>
 </html>
