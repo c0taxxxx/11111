@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Презентации | ЭУМК</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .presentation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .presentation-card {
+            padding: 30px;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .presentation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .presentation-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #d2463a; /* Цвет иконки PowerPoint */
+        }
+        
+        .presentation-card h3 {
+            font-size: 1.3rem;
+            line-height: 1.4;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            color: #1d1d1f;
+        }
+        
+        .btn-download {
+            align-self: flex-start;
+            padding: 12px 25px;
+            font-size: 1rem;
+            background-color: #0071e3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .btn-download:hover {
+            background-color: #0062c4;
+        }
+        
+        .category-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.05);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #0071e3;
+            color: white;
+        }
+        
+        .search-bar {
+            margin-bottom: 20px;
+            max-width: 400px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #d2d2d7;
+            font-size: 16px;
+        }
+        
+        .no-presentations {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #86868b;
+        }
+        
+        @media (max-width: 768px) {
+            .presentation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .presentation-card {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <span>ЭУМК</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <div class="nav-item">
+                    <a class="nav-link">Теоретический</a>
+                    <div class="glass-dropdown">
+                        <h3>Теоретический раздел</h3>
+                        <a href="presentations.html">Презентации</a>
+                        <a href="audio.html">Аудиоматериалы</a>
+                        <a href="slovary.html">Англо-русский словарь</a>
+                        <a href="grammar.html">Грамматический материал</a>
+                        <a href="translate.html">Особенности технического перевода</a>
+                        <a href="phrases.html">Полезные фразы для обсуждения</a>
+                        <a href="table.html">Таблица неправильных глаголов</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link">Практический</a>
+                    <div class="dropdown glass-dropdown">
+                        <h3>Практический раздел</h3>
+                        <a href="../theme/practice.html">Практические занятия</a>
+                        <a href="../theme/practicetests.html">Интерактивные упражнения</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link">Контроль знаний</a>
+                    <div class="dropdown glass-dropdown">
+                        <h3>Раздел контроля знаний</h3>
+                        <a href="../control/s.html">Обязательная контрольная работа</a>
+                        <a href="../control/control.html">Тематический контроль</a>
+                        <a href="../control/dkr.html">ДКР</a>
+                        <a href="../control/criteria.html">Критерии оценки</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link">Вспомогательный</a>
+                    <div class="dropdown glass-dropdown">
+                        <h3>Учебный план</h3>
+                        <a href="../additional/program.html">Учебная план</a>
+                        <a href="../additional/ptp.html">ПТП</a>
+                        <a href="../additional/ktp.html">КТП</a>
+                        <a href="../additional/resources.html">Перечень учебных изданий</a>
+                    </div>
+                </div>
+            </div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="section">
+            <div class="section-header">
+                <h1>Презентации</h1>
+                <p>Учебные материалы в формате презентаций PowerPoint для наглядного изучения тем</p>
+            </div>
+            
+            <!-- Фильтры и поиск -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Поиск по названию...">
+            </div>
+            
+            <div class="category-filter" id="categoryFilter">
+                <button class="filter-btn active" data-category="all">Все</button>
+                <button class="filter-btn" data-category="marketing">Маркетинг</button>
+                <button class="filter-btn" data-category="sales">Продажи</button>
+                <button class="filter-btn" data-category="product">Продукт</button>
+                <button class="filter-btn" data-category="training">Обучение</button>
+            </div>
+            
+            <!-- Контейнер для презентаций -->
+            <div class="presentation-grid" id="presentationContainer">
+                <!-- Презентации будут загружаться здесь через JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="../script.js"></script>
+    <script type="module" src="updateNav.js"></script>
+    <script src="../presentations-admin.js"></script>
+</body>
+</html>
