@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Презентации | ЭУМК</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./Презентации _ ЭУМК_files/style.css">
+    <link rel="stylesheet" href="./Презентации _ ЭУМК_files/all.min.css">
     <style>
         .presentation-grid {
-            display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 30px;
-            margin-top: 30px;
         }
         
         .presentation-card {
@@ -20,22 +18,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .presentation-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
         
         .presentation-icon {
             font-size: 3rem;
             margin-bottom: 20px;
-            color: #d2463a; /* Цвет иконки PowerPoint */
         }
         
         .presentation-card h3 {
@@ -43,67 +30,17 @@
             line-height: 1.4;
             margin-bottom: 25px;
             flex-grow: 1;
-            color: #1d1d1f;
         }
         
         .btn-download {
             align-self: flex-start;
             padding: 12px 25px;
             font-size: 1rem;
-            background-color: #0071e3;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: background-color 0.2s ease;
         }
         
-        .btn-download:hover {
-            background-color: #0062c4;
-        }
-        
-        .category-filter {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .filter-btn {
-            padding: 8px 16px;
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.05);
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .filter-btn:hover, .filter-btn.active {
-            background: #0071e3;
-            color: white;
-        }
-        
-        .search-bar {
-            margin-bottom: 20px;
-            max-width: 400px;
-        }
-        
-        .search-bar input {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid #d2d2d7;
-            font-size: 16px;
-        }
-        
-        .no-presentations {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px;
-            color: #86868b;
+        .badge {
+            padding: 8px 15px;
+            font-size: 0.9rem;
         }
         
         @media (max-width: 768px) {
@@ -118,55 +55,53 @@
     </style>
 </head>
 <body>
-    <nav class="glass-nav">
+    <nav class="glass-nav scrolled">
         <div class="nav-container">
             <div class="logo">
-                <a href="../index.html" class="logo-link">
-                    <span class="logo-icon"></span>
+                <a href="https://test-two-blond-50.vercel.app/index.html" class="logo-link">
                     <span>ЭУМК</span>
                 </a>
             </div>
             <div class="nav-links">
                 <div class="nav-item">
-                    <a class="nav-link">Теоретический раздел</a>
+                    <a class="nav-link">Теоретический</a>
                     <div class="glass-dropdown">
                         <h3>Теоретический раздел</h3>
-                        <a href="presentations.html">Презентации</a>
-                        <a href="audio.html">Аудиоматериалы</a>
-                        <a href="slovary.html">Англо-русский словарь</a>
-                        <a href="grammar.html">Грамматический материал</a>
-                        <a href="translate.html">Особенности технического перевода</a>
-                        <a href="phrases.html">Полезные фразы для обсуждения</a>
-                        <a href="table.html">Таблица неправильных глаголов</a>
+                        <a href="https://test-two-blond-50.vercel.app/theory/presentations.html">Презентации</a>
+                        <a href="https://test-two-blond-50.vercel.app/theory/audio.html">Аудиоматериалы</a>
+                        <a href="https://test-two-blond-50.vercel.app/theory/slovary.html">Англо-русский словарь</a>
+                        <a href="https://test-two-blond-50.vercel.app/theory/grammar.html">Грамматический материал</a>
+                        <a href="https://test-two-blond-50.vercel.app/theory/translate.html">Особенности технического перевода</a>
+                        <a href="https://test-two-blond-50.vercel.app/theory/phrases.html">Полезные фразы для обсуждения</a>
+                        <a href="https://test-two-blond-50.vercel.app/theory/table.html">Таблица неправильных глаголов</a>
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link">Практический раздел</a>
+                    <a class="nav-link">Практический</a>
                     <div class="dropdown glass-dropdown">
                         <h3>Практический раздел</h3>
-                        <a href="../theme/practice.html">Практические занятия</a>
-                        <a href="../theme/practicetests.html">Интерактивные упражнения</a>
+                        <a href="https://test-two-blond-50.vercel.app/theme/practice.html">Практические занятия</a>
+                        <a href="https://test-two-blond-50.vercel.app/theme/practicetests.html">Интерактивные упражнения</a>
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link">Раздел контроля знаний</a>
+                    <a class="nav-link">Контроль знаний</a>
                     <div class="dropdown glass-dropdown">
                         <h3>Раздел контроля знаний</h3>
-                        <a href="../control/s.html">Обязательная контрольная работа</a>
-                        <a href="../control/control.html">Тематический контроль</a>
-                        <a href="../control/dkr.html">ДКР</a>
-                        <a href="../control/control.html">Критерии оценки</a>
+                        <a href="https://test-two-blond-50.vercel.app/control/s.html">Обязательная контрольная работа</a>
+                        <a href="https://test-two-blond-50.vercel.app/control/control.html">Тематический контроль</a>
+                        <a href="https://test-two-blond-50.vercel.app/control/dkr.html">ДКР</a>
+                        <a href="https://test-two-blond-50.vercel.app/control/criteria.html">Критерии оценки</a>
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link">Вспомогательный раздел</a>
-                        <div class="dropdown glass-dropdown">
-                        <h3>Учебная программа</h3>
-                        <a href="../additional/program.html">Учебный план</a>
-                        <a href="../additional/program.html">Учебная программа</a>
-                        <a href="../additional/ptp.html">ПТП</a>
-                        <a href="../additional/ktp.html">КТП</a>
-                        <a href="../additional/resources.html">Перечень учебных изданий</a>
+                    <a class="nav-link">Вспомогательный</a>
+                    <div class="dropdown glass-dropdown">
+                        <h3>Учебный план</h3>
+                        <a href="https://test-two-blond-50.vercel.app/additional/program.html">Учебная программа</a>
+                        <a href="https://test-two-blond-50.vercel.app/additional/ptp.html">ПТП</a>
+                        <a href="https://test-two-blond-50.vercel.app/additional/ktp.html">КТП</a>
+                        <a href="https://test-two-blond-50.vercel.app/additional/resources.html">Перечень учебных изданий</a>
                     </div>
                 </div>
             </div>
@@ -183,120 +118,202 @@
                 <p>Учебные материалы в формате презентаций PowerPoint для наглядного изучения тем</p>
             </div>
             
-            <!-- Контейнер для презентаций -->
-            <div class="presentation-grid" id="presentationContainer">
-                <!-- Добавленные презентации -->
-                <div class="presentation-card" data-category="training">
+            <div class="presentation-grid">
+                <div class="presentation-card glass-card">
                     <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
+                        <i class="far fa-file-powerpoint"></i>
                     </div>
                     <h3>1.1. Лексико-фонетический и орфографический материал</h3>
-                    <a href="1.1. Лексико-фонетический и орфографический материал.pptx" class="btn-download" download>
-                        <i class="fas fa-download"></i> Скачать
-                    </a>
-                </div>
-
-                                <div class="presentation-card" data-category="product">
-                    <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
-                    </div>
-                    <h3>2.3.2 Современные_строительные_материалы</h3>
-                    <a href="2.3.2 Современные строительные материалы.pptx" class="btn-download" download>
+                    <a href="https://docs.google.com/presentation/d/194KCziub_EiRfhPuxY5kH8_BhD1q1LIkQANjfwuDjO0/edit?usp=sharing" class="btn btn-primary btn-download">
                         <i class="fas fa-download"></i> Скачать
                     </a>
                 </div>
                 
-                <div class="presentation-card" data-category="product">
+                <div class="presentation-card glass-card">
                     <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
+                        <i class="far fa-file-powerpoint"></i>
                     </div>
-                    <h3>2.3.6. Гипсоркатонные панели</h3>
-                    <a href="2.3.6. Гипсоркатонные панели.pptx" class="btn-download" download>
+                    <h3>1.2. Лексико-грамматический материал</h3>
+                    <a href="https://docs.google.com/presentation/d/1A5EwSxFAGKSsgo7dYWSoHe-ZbU-6SkZOT0ZFruVmpVs/edit?usp=sharing" class="btn btn-primary btn-download">
                         <i class="fas fa-download"></i> Скачать
                     </a>
                 </div>
                 
-                <div class="presentation-card" data-category="product">
+                <div class="presentation-card glass-card">
                     <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
+                        <i class="far fa-file-powerpoint"></i>
+                    </div>
+                    <h3>2.1. Компетенции специалиста. Моя профессия</h3>
+                    <a href="https://docs.google.com/presentation/d/1OQU2RxVl4OspxkfvKaxeLBr0m6VCcLBsebIoxuEqMOE/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+                
+                <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                    </div>
+                    <h3>2.2. Профессиональное самоопределение личности. Резюме</h3>
+                    <a href="https://docs.google.com/presentation/d/1Qil8CP0nrZtshTwpWLa7j6BNO9B3cK3Lo1HX3ST51aM/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+                
+                <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                    </div>
+                    <h3>2.3.1. Традиционные строительные материалы</h3>
+                    <a href="https://docs.google.com/presentation/d/1AvZwCjnHB22asDxTDUC6VFHmQOJ5fuSlyDDqZhcrcmQ/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+                
+                <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                    </div>
+                    <h3>2.3.2. Современные строительные материалы</h3>
+                    <a href="https://docs.google.com/presentation/d/1DxanOER8i7grYXybm-rfBNgPFRbfHMIosxJyO7l4C3E/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+                <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                    </div>
+                    <h3>2.3.3. Металлическое стекло</h3>
+                    <a href="https://docs.google.com/presentation/d/1wV1ORFD8Zd-q3yBwYKScStXqAMQPjRN4iHKYklWchqw/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+                <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                    </div>
+                    <h3>2.3.4. Инновации в области материаловедения и строительства </h3>
+                    <a href="https://docs.google.com/presentation/d/1iYc0jhRMhDeiYmwbkgmUGOorHvVlCyTz4Qx5nZdCvWw/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+                <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                    </div>
+                    <h3>2.3.5. Материалы для внутренней отделки стен</h3>
+                    <a href="https://docs.google.com/presentation/d/1f-Ie1ze1rLxsED5T2EJuyrjffPo0O4UhD-AjGDjtnYI/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+                <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                    </div>
+                    <h3>2.3.6. Панели гипсокартона</h3>
+                    <a href="https://docs.google.com/presentation/d/1R5qYGbbA2lS7sJfMTamdkZ38YSbSqJoyQN05SzBZCkg/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+                <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
                     </div>
                     <h3>2.3.7. Напольные покрытия</h3>
-                    <a href="2.3.7. Напольные покрытия.pptx" class="btn-download" download>
+                    <a href="https://docs.google.com/presentation/d/1DULCkDoqqRaH38ZS1GTfgyQrQv69CI61YOPQvDW4qj0/edit?usp=sharing" class="btn btn-primary btn-download">
                         <i class="fas fa-download"></i> Скачать
                     </a>
                 </div>
-                
-                <div class="presentation-card" data-category="product">
+                <div class="presentation-card glass-card">
                     <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
+                        <i class="far fa-file-powerpoint"></i>
                     </div>
                     <h3>2.3.8. Ламинат</h3>
-                    <a href="2.3.8. Ламинат.pptx" class="btn-download" download>
+                    <a href="https://docs.google.com/presentation/d/1LGCt3NxmyEga80A8TsSnFjnOXe9zIK6Ain_tg1v-U6c/edit?usp=sharing" class="btn btn-primary btn-download">
                         <i class="fas fa-download"></i> Скачать
                     </a>
                 </div>
-                
-                <div class="presentation-card" data-category="product">
+                <div class="presentation-card glass-card">
                     <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
+                        <i class="far fa-file-powerpoint"></i>
                     </div>
                     <h3>2.3.9. Строительная техника</h3>
-                    <a href="2.3.9. Строительная техника.pptx" class="btn-download" download>
+                    <a href="https://docs.google.com/presentation/d/1fFv6ELInJg6syf1ODFuvIV_JizaDogKVG1vgAEtww_M/edit?usp=sharing" class="btn btn-primary btn-download">
                         <i class="fas fa-download"></i> Скачать
                     </a>
                 </div>
-                
-                   
-                <div class="presentation-card" data-category="product">
+                <div class="presentation-card glass-card">
                     <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
+                        <i class="far fa-file-powerpoint"></i>
                     </div>
                     <h3>2.3.10. Строительные краны</h3>
-                    <a href="2.3.10. Строительные краны.pptx" class="btn-download" download>
+                    <a href="https://docs.google.com/presentation/d/1RkGe1oT0Xc9VvbZaI6x3_dVNYibetMOnH737nGhC2m8/edit?usp=sharing" class="btn btn-primary btn-download">
                         <i class="fas fa-download"></i> Скачать
                     </a>
                 </div>
-
-                <div class="presentation-card" data-category="training">
+                <div class="presentation-card glass-card">
                     <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
+                        <i class="far fa-file-powerpoint"></i>
                     </div>
-                    <h3>2.4.2 Строительная_площадка_Требования_безопасности</h3>
-                    <a href="2.4.2 Строительная площадка Требования безопасности.pptx" class="btn-download" download>
+                    <h3>2.4.1. Этапы и планирование строительного процесса</h3>
+                    <a href="https://docs.google.com/presentation/d/1ZOjZJBHWKlkkA1fHEzBK2LRSiWK4sgGSP1jekV12AoA/edit?usp=sharing" class="btn btn-primary btn-download">
                         <i class="fas fa-download"></i> Скачать
                     </a>
                 </div>
-
-                <div class="presentation-card" data-category="product">
+                 <div class="presentation-card glass-card">
                     <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
+                        <i class="far fa-file-powerpoint"></i>
                     </div>
+                    <h3>2.4.2. Строительная площадка. Требования безопасности</h3>
+                    <a href="https://docs.google.com/presentation/d/10W6wXPE7mlVjGmzyOdkFxszFp8YWAs7eCjqu7x9evy4/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+               <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                </div>
+                    <h3>2.4.3. Инженерные системы зданий</h3>
+                    <a href="https://docs.google.com/presentation/d/1YosC5u2eekLIqxC1RHNK8jwRfAPxq8G1XHey0-Tzf-k/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+               <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                </div>
                     <h3>2.4.4. Нанотехнологии в строительстве</h3>
-                    <a href="2.4.4. Нанотехнологии в строительстве.pptx" class="btn-download" download>
+                    <a href="https://docs.google.com/presentation/d/1B-AsGbD-mk6cVtZP1nwOB1QpcZwnoWHSCzr9bhCbJlg/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+               <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                </div>
+                    <h3>2.4.5. Умные дома</h3>
+                    <a href="https://docs.google.com/presentation/d/1u5ChyleDUQ28JVracjncUQcuc7rAJHl-HxkoubOKivY/edit?usp=sharing" class="btn btn-primary btn-download">
+                        <i class="fas fa-download"></i> Скачать
+                    </a>
+                </div>
+               <div class="presentation-card glass-card">
+                    <div class="presentation-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                </div>
+                    <h3>2.5.1. Экологичность и жилищное строительство. Обобщение изученного материала</h3>
+                    <a href="https://docs.google.com/presentation/d/1AGHGy-kDG51Pukkys1t3j0KH_mTj8ukM5QDdJcaL5tk/edit?usp=sharing" class="btn btn-primary btn-download">
                         <i class="fas fa-download"></i> Скачать
                     </a>
                 </div>
                 
-                <div class="presentation-card" data-category="product">
-                    <div class="presentation-icon">
-                        <i class="fas fa-file-powerpoint"></i>
-                    </div>
-                    <h3>2.4.5. Умные дома</h3>
-                    <a href="2.4.5. Умные дома.pptx" class="btn-download" download>
-                        <i class="fas fa-download"></i> Скачать
-                    </a>
-                </div>
-            
             </div>
         </section>
     </main>
 
-    <div class="scroll-top" id="scrollTop">
+    <div class="scroll-top active" id="scrollTop">
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <script src="../script.js"></script>
-    <script type="module" src="updateNav.js"></script>
-    <!-- Убрал подключение presentations-admin.js, так как презентации теперь встроены статически -->
+    <script src="./Презентации _ ЭУМК_files/script.js.Без названия"></script>
+
 </body>
 </html>
